@@ -29,7 +29,7 @@ export class ConfirmComponent implements OnInit {
   login() {
     if (this.authData.email !== '' && this.authData.password !== '') {
       this.auth.confirmRegistration(this.id, this.authData).subscribe((user: User) => {
-        this.auth.loggedUser = user;
+        this.auth.setUser(user);
         this.router.navigate(["/"]);
       }, err => {
         console.log(err);

@@ -11,7 +11,8 @@ import { NewUser } from '../models/new-user';
 })
 export class AuthService {
   private apiUrl = environment.apiUrl + 'auth/';
-  loggedUser: User;
+  
+
 
 
   private httpOptions = {
@@ -29,13 +30,28 @@ export class AuthService {
 
   }
 
+  loggedUser(): User {
+    return JSON.parse(sessionStorage.getItem('loggedUser'));
+  }
+
+  setUser(user): void {
+    sessionStorage.setItem('loggedUser', JSON.stringify(user));
+  }
+
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('loggedUser');
+  }
+
+  removeUser(): void {
+    sessionStorage.removeItem('loggedUser');
+  }
 
   login(credentials): Observable<User> {
     return this.http.post<User>(this.apiUrl, credentials, this.httpOptions);
   }
 
   logout() {
-    delete this.loggedUser;
+    this.removeUser();
     // this.toast.success('Logged out.', 'Success');
     return this.http.delete(this.apiUrl, this.httpOptions);
   }

@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (this.authData.email === '' || this.authData.password === '') {
+    if (this.authData.email !== '' && this.authData.password !== '') {
       this.auth.login(this.authData).subscribe((user: User) => {
-        this.auth.loggedUser = user;
+        this.auth.setUser(user);
         this.router.navigate(["/"]);
       }, err => {
         console.log(err);

@@ -10,6 +10,29 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { NotesComponent } from './notes/notes.component';
 import { NoteComponent } from './components/note/note.component';
 import { ConfirmComponent } from './auth/confirm/confirm.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//datepicker
+import {
+  MatIconModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatNativeDateModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatCardModule,
+  MatRadioModule,
+  MatSelectModule,
+} from '@angular/material';
+import { PublicDashboardComponent } from './pages/public-dashboard/public-dashboard.component';
+import { PrivateDashboardComponent } from './pages/private-dashboard/private-dashboard.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { GroupsComponent } from './pages/groups/groups.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -18,13 +41,37 @@ import { ConfirmComponent } from './auth/confirm/confirm.component';
     RegistrationComponent,
     NotesComponent,
     NoteComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    NavbarComponent,
+    DatepickerComponent,
+    PublicDashboardComponent,
+    PrivateDashboardComponent,
+    MyProfileComponent,
+    GroupsComponent,
+    ProfileComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    //datepicker
+    MatDatepickerModule,
+    MatCardModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+
+  ],
+  exports: [
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
