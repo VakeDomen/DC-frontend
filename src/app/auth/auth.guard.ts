@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
             console.log("user is logged in!");
             return true;
         }
+        console.log("user is unauthorized!");
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
     }

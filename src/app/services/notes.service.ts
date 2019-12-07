@@ -24,7 +24,12 @@ export class NotesService {
     // private toast: ToastrService,
   ) {}
 
-  getList(): Observable<Note[]> {
+  getPublicNotes(): Observable<Note[]> {
+    // not implemented yet
+    return this.http.get<Note[]>(this.apiUrl, this.httpOptions);
+  }
+
+  getUserNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(this.apiUrl, this.httpOptions);
   }
 

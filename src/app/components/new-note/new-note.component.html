@@ -1,0 +1,13 @@
+<ng-container *ngIf="note">
+    <input class="input" type="text" placeholder="Add title..." [(ngModel)]="note.title">
+    <textarea class="textarea" placeholder="Add content..." [(ngModel)]="note.body"></textarea>
+    <div class="level">
+        <div class="level-left">
+            <app-datepicker (date)='updateDate($event)'></app-datepicker>
+        </div>
+        <div class="level-right">
+            <button class="button is-success" (click)="submit()">Confirm</button>
+            <button class="button" (click)="modalOpen = 0">Cancel</button>
+        </div>
+    </div>
+</ng-container>

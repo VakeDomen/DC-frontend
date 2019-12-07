@@ -11,13 +11,32 @@ import { MatDatepickerInputEvent } from '@angular/material';
 export class DatepickerComponent {
 
   @Input() label = 'Pick a date';
+  @Input() timePicker = true;
+  @Input() time = '12:00';
+
+
   @Output() date = new EventEmitter<Date>();
+  dateSelected: Date;
 
+  emit() {
+    this.dateSelected.setHours(+this.time.split(':')[0]);
+    this.dateSelected.setMinutes(+this.time.split(':')[1]);
+    this.date.emit(this.dateSelected);
+  }
 
+  addDate(type: string, event) {
+    this.dateSelected = event.value;
+    if (!this.time) {
+      this.time = '12:00';
+    }
+    this.emit();
+  }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    //event.value.setHours(12);
-    this.date.emit(event.value);
-
+  addTime(type: string, event) {
+    this.time = event;
+    if (!this.dateSelected) {
+      this.dateSelected = new Date();
+    }
+    this.emit();
   }
 }

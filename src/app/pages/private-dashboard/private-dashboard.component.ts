@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotesService } from 'src/app/services/notes.service';
+import { Note } from 'src/app/models/note';
 
 @Component({
   selector: 'app-private-dashboard',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateDashboardComponent implements OnInit {
 
-  constructor() { }
+  notes: Note[];
+
+  constructor(
+    private noteService: NotesService,
+  ) { }
 
   ngOnInit() {
+    this.noteService.getUserNotes().subscribe((notes: Note[]) => {
+      this.notes = notes;
+    }, error => {
+      console.log(error);
+    })
   }
+
 
 }

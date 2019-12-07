@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
-import { NotesComponent } from './notes/notes.component';
+import { NotesComponent } from './components/notes/notes.component';
 import { NoteComponent } from './components/note/note.component';
 import { ConfirmComponent } from './auth/confirm/confirm.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -27,11 +27,13 @@ import {
   MatRadioModule,
   MatSelectModule,
 } from '@angular/material';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 import { PublicDashboardComponent } from './pages/public-dashboard/public-dashboard.component';
 import { PrivateDashboardComponent } from './pages/private-dashboard/private-dashboard.component';
-import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NewNoteComponent } from './components/new-note/new-note.component';
 
 
 @NgModule({
@@ -46,9 +48,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     DatepickerComponent,
     PublicDashboardComponent,
     PrivateDashboardComponent,
-    MyProfileComponent,
     GroupsComponent,
     ProfileComponent,
+    NewNoteComponent,
     
   ],
   imports: [
@@ -68,6 +70,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MatCheckboxModule,
     MatToolbarModule,
     MatNativeDateModule,
+    NgxMaterialTimepickerModule.setLocale('de'),
 
   ],
   exports: [
