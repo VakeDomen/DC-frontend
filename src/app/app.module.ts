@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +34,7 @@ import { PrivateDashboardComponent } from './pages/private-dashboard/private-das
 import { GroupsComponent } from './pages/groups/groups.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewNoteComponent } from './components/new-note/new-note.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 @NgModule({
@@ -76,7 +77,12 @@ import { NewNoteComponent } from './components/new-note/new-note.component';
   exports: [
     MatDatepickerModule,
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptor, multi: true 
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
