@@ -14,7 +14,14 @@ export class Note implements Deserializable {
   
   
     deserialize(input: any): this {
+      this.date = new Date(input.date_tag);
       return Object.assign(this, input);
+    }
+
+    preprareForUpload(pub: boolean, pinned: boolean): void {
+      delete this.user_id;
+      this.public = pub ? 1 : 0;
+      this.pinned = pinned ? 1 : 0;
     }
     
 }

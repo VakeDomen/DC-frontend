@@ -1,1 +1,56 @@
-<p>groups works!</p>
+<div class="container">
+    <div class="level">
+        <div class="level-left">
+            <i class="fas fa-users fa-3x icon-center margin-icon"></i>
+            <h1 class="title is-1">Groups</h1>
+        </div>
+        <div class="level-right">
+            <div class="is-primary teal-hover" (click)="modalOpen=1">
+                <i class="fas fa-plus-square fa-3x"></i>
+            </div>
+            <!-- <app-new-group (createdGroup)="newGroup($event)"></app-new-group> -->
+        </div>
+    </div>
+
+    <div class="box" *ngIf="groups">
+        <div class="group-grid-container">
+            <div *ngFor="let group of groups">
+                <article [style.background]="group.color" class="tile is-child notification bg-light-hover"
+                    [routerLink]="['/group/', group.id]">
+                    <div class="title has-text-centered">{{ group.name }}</div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="box has-text-centered" *ngIf="!groups || groups.length === 0">
+        <h1 class="title is-3">You are currently not a member of any group.</h1>
+    </div>
+
+    
+    <div class="box" *ngIf="groups && groups.length > 0">
+        <h1 class="title is-2">Pinned notes</h1>
+        <app-notes *ngIf="groupedNotes" [notes]="getPinnedNotes()" [groups]="groups" [groupColors]="true"></app-notes>
+    </div>
+    
+</div>
+
+
+<!-- new group modal -->
+<div class="modal" [ngClass]="{'is-active': modalOpen === 1 || modalOpen === 2 || modalOpen === 3}">
+    <div class="modal-background" (click)="modalOpen = 0"></div>
+    <div class="modal-card">
+        <!-- <section class="modal-card-body"> -->
+        <div class="level" *ngIf="modalOpen === 1">
+            <div class="level-item has-text-centered">
+                <button class="button is-primary" (click)="modalOpen=3">Join</button>
+            </div>
+            <div class="level-item has-text-centered">
+                <button class="button is-primary" (click)="modalOpen=2">Create new</button>
+            </div>
+        </div>
+
+        <app-new-group *ngIf="modalOpen === 2" (createdGroup)="newGroup($event)"></app-new-group>
+        <app-join-group *ngIf="modalOpen === 3" (joinedGroup)="newGroup($event)"></app-join-group>
+        <!-- </section> -->
+    </div>
+</div>

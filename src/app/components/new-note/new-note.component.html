@@ -1,10 +1,16 @@
 <ng-container *ngIf="note">
     <input class="input" type="text" placeholder="Add title..." [(ngModel)]="note.title">
     <textarea class="textarea" placeholder="Add content..." [(ngModel)]="note.body"></textarea>
+    <app-datepicker (date)='updateDate($event)'></app-datepicker>
+    <div class="field">
+        <input id="publicSwitch" type="checkbox" name="publicSwitch" class="switch is-rtl" [(ngModel)]="public">
+        <label for="publicSwitch">Public</label>
+        <br>
+        <input id="pinnedSwitch" type="checkbox" name="pinnedSwitch" class="switch is-rtl" [(ngModel)]="pinned">
+        <label for="pinnedSwitch">Pinned</label>
+    </div>
     <div class="level">
-        <div class="level-left">
-            <app-datepicker (date)='updateDate($event)'></app-datepicker>
-        </div>
+        <div class="level-left"></div>
         <div class="level-right">
             <button class="button is-success" (click)="submit()">Confirm</button>
             <button class="button" (click)="modalOpen = 0">Cancel</button>

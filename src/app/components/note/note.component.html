@@ -1,5 +1,5 @@
 <div class="card">
-    <article class="tile is-child notification is-primary">
+    <article class="tile is-child notification" [style.background]="color">
         <p class="title">{{ note.title }}</p>
         <p>
             {{ shorten(note.body) }}

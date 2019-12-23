@@ -16,7 +16,7 @@ export class PublicDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.noteService.getUserNotes().subscribe((notes: Note[]) => {
+    this.noteService.getPublicNotes().subscribe((notes: Note[]) => {
       this.notes = notes;
     }, error => {
       console.log(error);

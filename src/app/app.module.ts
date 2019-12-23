@@ -35,6 +35,11 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewNoteComponent } from './components/new-note/new-note.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { NewGroupComponent } from './components/new-group/new-group.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { GroupComponent } from './pages/group/group.component';
+import { JoinGroupComponent } from './components/join-group/join-group.component';
+import { FilterableNotesComponent } from './components/filterable-notes/filterable-notes.component';
 
 
 @NgModule({
@@ -52,6 +57,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     GroupsComponent,
     ProfileComponent,
     NewNoteComponent,
+    NewGroupComponent,
+    GroupComponent,
+    JoinGroupComponent,
+    FilterableNotesComponent,
     
   ],
   imports: [
@@ -73,6 +82,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatNativeDateModule,
     NgxMaterialTimepickerModule.setLocale('de'),
 
+    ColorPickerModule
   ],
   exports: [
     MatDatepickerModule,

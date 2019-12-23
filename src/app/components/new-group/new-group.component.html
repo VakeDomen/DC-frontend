@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="level">
+        <div class="level-item color-picker-placeholder">
+            <input 
+                class = "color-picker"
+                [(colorPicker)]="color" 
+                [style.background]="color" 
+                (colorPickerChange)="colorChange($event)"
+            />
+        </div>
+        <input class="input level-item" type="text" placeholder="Add name..." [(ngModel)]="group.name">
+    </div>
+    <div class="level">
+        <div class="level-item">
+            <button class="button is-primary" (click)="submit()">Confirm</button>
+        </div>
+    </div>
+    
+    
+    
+</div>
+    

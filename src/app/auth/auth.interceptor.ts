@@ -20,8 +20,10 @@ export class AuthInterceptor implements HttpInterceptor {
                 // auto logout if 401 response returned from api
                 this.authenticationService.logout();
                 this.router.navigate(["/login"]);
+            } else if(err.status === 404) {
+                return throwError(err.statusText);
             }
-
+            
             const error = err.error.message || err.statusText;
             return throwError(error);
         }))

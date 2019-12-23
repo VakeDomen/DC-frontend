@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-.gray-hover:hover {
+
+@import 'bulma';
+//@import '~bulma-calendar';
+@import '~bulma-switch';
+
+
+.teal-hover:hover {
   border-radius: 5px;
   color: hsl(172, 76%, 72%);
+}
+
+.bg-light-hover:hover {
+  border-radius: 5px;
+  filter: brightness(115%);
 }
 
 html, body { height: 100%; }

@@ -10,6 +10,7 @@ export class NoteComponent implements OnInit {
 
   @Input() note: Note;
   @Input() displayBodyLength: number = 300;
+  @Input() color: string =  "#00d1b2";
 
   constructor() { }
 
@@ -18,6 +19,6 @@ export class NoteComponent implements OnInit {
 
 
   shorten(body: string): string {
-    return body.slice(0, this.displayBodyLength) + '...';
+    return body.slice(0, this.displayBodyLength) + (body.length > this.displayBodyLength ? '...' : '');
   }
 }

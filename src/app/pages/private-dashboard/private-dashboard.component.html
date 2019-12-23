@@ -1,1 +1,4 @@
-<app-notes [notes]=notes [ableToAddNew]=true></app-notes>
+<div class="container">
+    <h1 class="title is-2">Your notes</h1>
+    <app-filterable-notes [notes]=notes [ableToAddNew]=true [groupColors]=true [groups]=groups></app-filterable-notes>
+</div>

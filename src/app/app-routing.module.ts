@@ -8,12 +8,18 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PublicDashboardComponent } from './pages/public-dashboard/public-dashboard.component';
 import { PrivateDashboardComponent } from './pages/private-dashboard/private-dashboard.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { GroupComponent } from './pages/group/group.component';
 
 
 const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent
+  },
+  {
+    path: 'group/:id',
+    canActivate: [AuthGuard],
+    component: GroupComponent
   },
   {
     path: 'login',

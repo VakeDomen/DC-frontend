@@ -1,0 +1,110 @@
+<div class="container" *ngIf="group && isMember()">
+    <div class="level">
+        <div class="level-left">
+            <div>
+                <h1 class="heading">Group:</h1>
+                <h3 class="title is-1">{{ group.name }}</h3>
+            </div>
+        </div>
+        <div class="level-right">
+            <div (click)="leaveModal=!leaveModal" class="is-primary teal-hover" >
+                <i *ngIf="!isGroupOwner()" class="fas fa-sign-out-alt fa-3x"></i>
+                <i *ngIf="isGroupOwner()" class="fas fa-trash-alt fa-3x"></i>
+            </div>            
+        </div>
+    </div>
+    <div class="box">
+        <i class="fas fa-tag fa-2x float-icon"></i>
+    
+        <h3 class="title is-3 float-icon"><b>Join tag:</b> </h3><span (click)="copyToClipboard(group.id)" class="tag is-primary is-light is-large bg-light-hover">{{ group.id }}</span>
+
+    </div>
+    
+
+    <div class="box">
+        <div class="level">
+            <div class="level-item has-text-centered">
+                <div class="columns">
+                    <div class="column">
+                        <i class="fas fa-sticky-note fa-3x icon-center"></i>
+                    </div>
+                    <div class="column">
+                        <p class="heading">Notes</p>
+                        <p class="title">{{ numOfAllNotes() }}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="level-item has-text-centered">
+                <div class="columns">
+                    <div class="column">
+                        <i class="fas fa-thumbtack fa-3x icon-center"></i>
+                    </div>
+                    <div class="column">
+                        <p class="heading">Pinned</p>
+                        <p class="title">{{ numOfPinnedNotes() }}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <div class="columns">
+                        <div class="column">
+                            <i class="fas fa-users fa-3x icon-center"></i>
+                        </div>
+                        <div class="column">
+                            <p class="heading">Members</p>
+                            <p class="title">{{ numOfMembers() }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="title is-2">Notes</h1>
+
+    <app-filterable-notes [group]=group [ableToAddNew]=true [notes]=notes [groupColors]=true></app-filterable-notes>
+</div>
+
+<div class="container" *ngIf="!group">
+    <h1 class="title is-1">404 No group found!</h1>
+</div>
+
+<!-- new leave modal -->
+<div class="modal" [ngClass]="{'is-active': leaveModal}">
+    <div class="modal-background" (click)="leaveModal=!leaveModal"></div>
+    <div class="modal-card" *ngIf="group">
+        <!-- <section class="modal-card-body"> -->
+        <div class="content">
+            <div class="box" *ngIf="!isGroupOwner()">
+                <p class="has-text-centered">Are you sure you want to leave the group?</p>
+                <div class="level">
+                    <div class="level-item">
+                        <button class="button is-primary is-outlined" (click)="leaveGroup()">Yes</button>
+                    </div>
+                    <div class="level-item">
+                        <button class="button is-primary" (click)="leaveModal=!leaveModal">No</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" *ngIf="isGroupOwner()">
+                <p class="has-text-centered">Are you sure you want to delete the group?</p>
+                <p class="has-text-centered">This action will also delete all the notes belonging to this group.</p>
+                <div class="level">
+                    <div class="level-item">
+                        <button class="button is-primary is-outlined" (click)="deleteGroup()">Yes</button>
+                    </div>
+                    <div class="level-item">
+                        <button class="button is-primary" (click)="leaveModal=!leaveModal">No</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- </section> -->
+    </div>
+</div>

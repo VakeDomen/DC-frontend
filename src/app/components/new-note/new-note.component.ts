@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
+import { Group } from 'src/app/models/group';
 
 @Component({
   selector: 'app-new-note',
@@ -10,6 +11,9 @@ import { NotesService } from 'src/app/services/notes.service';
 export class NewNoteComponent implements OnInit {
 
   note: Note;
+  public: boolean = false;
+  pinned: boolean = false;
+  @Input() group: Group = null;
   @Output() createdNote = new EventEmitter<Note>();
 
   constructor(
@@ -22,7 +26,10 @@ export class NewNoteComponent implements OnInit {
 
 
   submit() {
-    delete this.note.user_id;
+    if (this.group) {
+      this.note.group_id = this.group.id;
+    }
+    this.note.preprareForUpload(this.public, this.pinned);
     this.noteService.saveNew(this.note).subscribe((note: Note) => {
       console.log('note', note);
       this.createdNote.emit(note);
@@ -32,6 +39,7 @@ export class NewNoteComponent implements OnInit {
     console.log(this.note);
 
   }
+
 
   updateDate(date) {
     this.note.date_tag = this.parseNaiveDateTime(date);
