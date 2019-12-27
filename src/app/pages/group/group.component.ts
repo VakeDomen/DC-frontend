@@ -72,12 +72,15 @@ export class GroupComponent implements OnInit {
 
   deleteGroup(): void {
     this.groupService.deleteGroup(this.group.id).subscribe((group: Group) => {
-      console.log("group deleted: ", group);
       this.router.navigate(["/groups"])
     })
   }
 
   isGroupOwner(): boolean {
     return this.authService.loggedUser().id === this.group.created_by;
+  }
+
+  newNote(note: Note): void {
+    this.notes.push(note);
   }
 }

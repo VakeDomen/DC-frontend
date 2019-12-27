@@ -40,6 +40,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { GroupComponent } from './pages/group/group.component';
 import { JoinGroupComponent } from './components/join-group/join-group.component';
 import { FilterableNotesComponent } from './components/filterable-notes/filterable-notes.component';
+import { NotePageComponent } from './pages/note/note.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { FilterableNotesComponent } from './components/filterable-notes/filterab
     GroupComponent,
     JoinGroupComponent,
     FilterableNotesComponent,
+    NotePageComponent,
     
   ],
   imports: [

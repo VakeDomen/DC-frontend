@@ -66,7 +66,7 @@
 
     <h1 class="title is-2">Notes</h1>
 
-    <app-filterable-notes [group]=group [ableToAddNew]=true [notes]=notes [groupColors]=true></app-filterable-notes>
+    <app-filterable-notes [group]=group [ableToAddNew]=true [notes]=notes [groupColors]=true (createdNote)="newNote($event)"></app-filterable-notes>
 </div>
 
 <div class="container" *ngIf="!group">

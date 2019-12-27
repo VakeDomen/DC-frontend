@@ -25,6 +25,10 @@ export class NotesService {
     // private toast: ToastrService,
   ) {}
 
+  getNote(id: string): Observable<Note> {
+    return this.http.get<Note>(this.apiUrl + id, this.httpOptions);
+  }
+
   getUserGroupNotes(): Observable<GroupedNotes[]> {
     return this.http.get<GroupedNotes[]>(this.apiUrl + "groups", this.httpOptions);
   }

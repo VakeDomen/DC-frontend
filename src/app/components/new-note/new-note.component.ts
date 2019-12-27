@@ -30,13 +30,13 @@ export class NewNoteComponent implements OnInit {
       this.note.group_id = this.group.id;
     }
     this.note.preprareForUpload(this.public, this.pinned);
+    console.log(this.note);
     this.noteService.saveNew(this.note).subscribe((note: Note) => {
-      console.log('note', note);
       this.createdNote.emit(note);
     }, err => {
       console.log('error', err);
     })
-    console.log(this.note);
+    
 
   }
 

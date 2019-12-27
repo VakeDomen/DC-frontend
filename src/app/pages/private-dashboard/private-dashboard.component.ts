@@ -30,5 +30,7 @@ export class PrivateDashboardComponent implements OnInit {
     })
   }
 
-
+  newNote(note: Note): void {
+    this.notes.push(note);
+  }
 }

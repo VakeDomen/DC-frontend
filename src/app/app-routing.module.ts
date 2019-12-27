@@ -9,47 +9,52 @@ import { PublicDashboardComponent } from './pages/public-dashboard/public-dashbo
 import { PrivateDashboardComponent } from './pages/private-dashboard/private-dashboard.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupComponent } from './pages/group/group.component';
+import { NotePageComponent } from './pages/note/note.component';
 
 
 const routes: Routes = [
   {
     path: 'profile/:id',
-    component: ProfileComponent
+    component: ProfileComponent,
+  },
+  {
+    path: 'note/:id',
+    component: NotePageComponent,
   },
   {
     path: 'group/:id',
     canActivate: [AuthGuard],
-    component: GroupComponent
+    component: GroupComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: '',
-    component: PublicDashboardComponent
+    component: PublicDashboardComponent,
   },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    component: PrivateDashboardComponent
+    component: PrivateDashboardComponent,
   },
   {
     path: 'register',
-    component: RegistrationComponent
+    component: RegistrationComponent,
   },
   {
     path: 'groups',
     canActivate: [AuthGuard],
-    component: GroupsComponent
+    component: GroupsComponent,
   },
   {
     path: 'confirm/:id',
-    component: ConfirmComponent
+    component: ConfirmComponent,
   },
   {
     path: '**',
-    component: PublicDashboardComponent
+    component: PublicDashboardComponent,
   },
 ];
 

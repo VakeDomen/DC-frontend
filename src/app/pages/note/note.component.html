@@ -1,0 +1,37 @@
+<div class="container" *ngIf="note">
+    <div class="level">
+        <div class="level-left">
+            <h1 class="title is-1"> {{ note.title }}</h1>
+        </div>
+        <div class="level-right">
+            <div *ngIf="isNoteOwner()" (click)="leaveModal=!leaveModal" class="is-primary teal-hover" >
+                <i class="fas fa-trash-alt fa-3x"></i>
+            </div> 
+        </div>
+    
+    </div>
+    <div class="box">
+        {{note.body}}
+    </div>
+
+    <div class="level">
+        <div class="level-left">
+            <div *ngIf="note.date_tag">
+                Due date: {{note.date_tag | date: 'dd.MM.yyyy hh:mm'}}
+            </div>            
+        </div>
+        <div class="level-right">
+            <div *ngIf="user">
+                Created by: {{ user.name }}
+            </div>
+            <div *ngIf="!user">
+                Created by: Unknown user
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="!note">
+    <h1 class="title is-2">Not able to lead note</h1>
+    <h3 class="subtitle is-3">Does it exitst?</h3>
+</div>

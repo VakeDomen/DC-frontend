@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../services/notes.service';
 import { Note } from '../../models/note';
 import { AuthService } from '../../services/auth.service';
@@ -18,7 +18,14 @@ export class NotesComponent implements OnChanges {
   @Input() groupColors: boolean = false;
   @Input() groups: Group[];
   @Input() group: Group = null;
+  @Input() paginationPageSize: number = 10;
   modalOpen: boolean = false;
+  pagination: boolean = false;
+  page: number = 1;
+  finalPage: number = 1;
+  
+
+  @Output() createdNote = new EventEmitter<Note>();
 
 
   constructor(
@@ -28,6 +35,7 @@ export class NotesComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(this.notes) {
+      this.setUpPagination();
       if (this.pinned) {
         this.sortWithPinnedNotes();
       } else {
@@ -75,8 +83,64 @@ export class NotesComponent implements OnChanges {
   }
 
   newNote(note: Note): void {
-    console.log("new note: ", note);
-    this.notes.push(note);
     this.modalOpen = false;
+    this.createdNote.emit(note);
+  }
+
+  notesPage(): Note[] {
+    if(this.notes && this.notes.length > 0) {
+      let startIndex = (this.page - 1) * this.paginationPageSize;
+      let endIndex = (this.page) * this.paginationPageSize;
+      if (endIndex > this.notes.length) {
+        endIndex = this.notes.length;
+      }
+      
+      let out: Note[] = [];
+      for (let i = startIndex ; i < endIndex ; i++) {
+        out.push(this.notes[i]);
+      }
+      return out;
+    }
+    
+  }
+
+  setUpPagination(): void {
+    this.pagination = this.notes.length > this.paginationPageSize;
+    if (!this.pagination || !this.page) {
+      this.page = 1;
+    }
+    this.finalPage = Math.ceil(this.notes.length / this.paginationPageSize);
+  }
+  existsPreviousPage(): boolean {
+    return this.page > 1;
+  }
+  existsNextPage(): boolean {
+    return this.page < this.finalPage;
+  }
+  previousPage(): void {
+    this.page--;
+  }
+  nextPage(): void {
+    this.page++;
+  }
+  getCurrentPage(): number {
+    return this.page;
+  }
+  getLastPage(): number {
+    return this.finalPage;
+  }
+  setPage(page: number): void {
+    console.log(page)
+    if (page > 0 && page < this.finalPage + 1) {
+      this.page = page;
+    }
+  }
+  constuctPageIndexes(): number[] {
+    let out: number[] = [];
+    for(let i = 0 ; i < this.getLastPage() ; i++) {
+      out.push(i + 1);
+    }
+    console.log(out);
+    return out;
   }
 }

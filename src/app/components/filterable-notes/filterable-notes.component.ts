@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { Group } from 'src/app/models/group';
 import { PatriciaTree } from 'src/app/models/particiaTree';
@@ -16,6 +16,8 @@ export class FilterableNotesComponent implements OnChanges {
   @Input() groupColors: boolean = false;
   @Input() groups: Group[];
   @Input() group: Group = null;
+
+  @Output() createdNote = new EventEmitter<Note>();
 
   noteFilterTree: PatriciaTree;
 
@@ -69,4 +71,9 @@ export class FilterableNotesComponent implements OnChanges {
     return out;
   }
 
+
+  newNote(note: Note): void {
+    console.log("new note: ", note);
+    this.createdNote.emit(note);
+  }
 }

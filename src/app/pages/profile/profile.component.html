@@ -1,1 +1,23 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="box" *ngIf="user">
+        <article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <i class="fas fa-user-alt fa-5x"></i>
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{ user.name }}</strong>
+                  <br>
+                  {{ user.email }}
+                </p>
+              </div>
+            </div>
+            <div class="media-right">
+              <button class="delete"></button>
+            </div>
+        </article>
+    </div>
+</div>
