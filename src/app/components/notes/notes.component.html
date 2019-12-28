@@ -1,10 +1,9 @@
 <div>
-
     <!-- pagination -->
     <div class="level pagination" *ngIf="pagination">
         <!-- previous -->
         <div class="level-item has-text-centered">
-            <button class="button is-primary" [disabled]="!existsPreviousPage()" (click)="previousPage()">Previous</button>
+            <button class="button is-primary" [disabled]="!existsPreviousPage()" (click)="previousPage()">{{ lang.getText("Previous") }}</button>
         </div>
         <!-- page one -->
         <div class="level-item has-text-centered">
@@ -24,11 +23,9 @@
         </div>
        <!-- next page -->
         <div class="level-item has-text-centered">
-            <button class="button is-primary" [disabled]="!existsNextPage()" (click)="nextPage()">Next</button>
+            <button class="button is-primary" [disabled]="!existsNextPage()" (click)="nextPage()">{{ lang.getText("Next") }}</button>
         </div>
-
     </div>
-
     <div class="container">
         <!-- new note -->
         <div *ngIf="ableToAddNew" class="card" (click)='modalOpen = 1'>
@@ -40,7 +37,6 @@
                 </div>
             </article>
         </div>
-        
         <!-- list notes -->
         <ng-container *ngIf="groupColors">
             <app-note 
@@ -58,15 +54,11 @@
                 [note]=note
                 [routerLink]="['/note', note.id]"
             ></app-note>
-        </ng-container>
-        
+        </ng-container>     
         <div class="has-text-centered" *ngIf="(!notes || notes.length === 0) && !ableToAddNew">
-            <h1 class="title is-3">No notes</h1>
+            <h1 class="title is-3">{{lang.getText("No notes")}}</h1>
         </div>
-
     </div>
-
-    
 </div>
 <!-- new note modal -->
 <div class="modal" [ngClass]="{'is-active': modalOpen === 1}">
@@ -77,4 +69,3 @@
         </section>
     </div>
 </div>
-

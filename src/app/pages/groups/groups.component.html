@@ -2,7 +2,7 @@
     <div class="level">
         <div class="level-left">
             <i class="fas fa-users fa-3x icon-center margin-icon"></i>
-            <h1 class="title is-1">Groups</h1>
+            <h1 class="title is-1">{{lang.getText('Groups')}}</h1>
         </div>
         <div class="level-right">
             <div class="is-primary teal-hover" (click)="modalOpen=1">
@@ -23,12 +23,12 @@
         </div>
     </div>
     <div class="box has-text-centered" *ngIf="!groups || groups.length === 0">
-        <h1 class="title is-3">You are currently not a member of any group.</h1>
+        <h1 class="title is-3">{{lang.getText('No group')}}</h1>
     </div>
 
     
     <div class="box" *ngIf="groups && groups.length > 0">
-        <h1 class="title is-2">Pinned notes</h1>
+        <h1 class="title is-2">{{lang.getText("Pinned notes")}}</h1>
         <app-notes *ngIf="groupedNotes" [notes]="getPinnedNotes()" [groups]="groups" [groupColors]="true"></app-notes>
     </div>
     
@@ -42,10 +42,10 @@
         <!-- <section class="modal-card-body"> -->
         <div class="level" *ngIf="modalOpen === 1">
             <div class="level-item has-text-centered">
-                <button class="button is-primary" (click)="modalOpen=3">Join</button>
+                <button class="button is-primary" (click)="modalOpen=3">{{lang.getText('Join')}}</button>
             </div>
             <div class="level-item has-text-centered">
-                <button class="button is-primary" (click)="modalOpen=2">Create new</button>
+                <button class="button is-primary" (click)="modalOpen=2">{{lang.getText('Create new')}}</button>
             </div>
         </div>
 

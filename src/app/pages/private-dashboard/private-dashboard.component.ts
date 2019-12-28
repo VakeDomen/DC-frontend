@@ -3,6 +3,7 @@ import { NotesService } from 'src/app/services/notes.service';
 import { Note } from 'src/app/models/note';
 import { GroupsService } from 'src/app/services/groups.service';
 import { Group } from 'src/app/models/group';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-private-dashboard',
@@ -17,6 +18,7 @@ export class PrivateDashboardComponent implements OnInit {
   constructor(
     private noteService: NotesService,
     private groupsService: GroupsService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

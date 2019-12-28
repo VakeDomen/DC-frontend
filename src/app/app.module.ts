@@ -41,6 +41,8 @@ import { GroupComponent } from './pages/group/group.component';
 import { JoinGroupComponent } from './components/join-group/join-group.component';
 import { FilterableNotesComponent } from './components/filterable-notes/filterable-notes.component';
 import { NotePageComponent } from './pages/note/note.component';
+import { EditNoteComponent } from './components/edit-note/edit-note.component';
+import { LangComponent } from './components/lang/lang.component';
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { NotePageComponent } from './pages/note/note.component';
     JoinGroupComponent,
     FilterableNotesComponent,
     NotePageComponent,
-    
+    EditNoteComponent,
+    LangComponent,
   ],
   imports: [
     BrowserModule,

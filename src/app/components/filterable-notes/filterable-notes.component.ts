@@ -2,6 +2,7 @@ import { Component, OnChanges, Input, SimpleChanges, Output, EventEmitter } from
 import { Note } from 'src/app/models/note';
 import { Group } from 'src/app/models/group';
 import { PatriciaTree } from 'src/app/models/particiaTree';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-filterable-notes',
@@ -27,7 +28,9 @@ export class FilterableNotesComponent implements OnChanges {
   futureFilter: boolean = true;
   
 
-  constructor() { }
+  constructor(
+    public lang: LangService,
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.noteFilterTree = new PatriciaTree();

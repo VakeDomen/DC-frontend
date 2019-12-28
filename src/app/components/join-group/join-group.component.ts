@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GroupsService } from 'src/app/services/groups.service';
 import { Group } from 'src/app/models/group';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-join-group',
@@ -14,6 +15,7 @@ export class JoinGroupComponent implements OnInit {
 
   constructor(
     private groupService: GroupsService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

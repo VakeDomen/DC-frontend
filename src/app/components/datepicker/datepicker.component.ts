@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
+import { LangService } from 'src/app/services/lang.service';
 
 
 @Component({
@@ -10,13 +11,18 @@ import { MatDatepickerInputEvent } from '@angular/material';
 
 export class DatepickerComponent {
 
-  @Input() label = 'Pick a date';
+  constructor(
+    private lang: LangService,
+  ){}
+
+  @Input() label = this.lang.getText('Pick a date');
   @Input() timePicker = true;
   @Input() time = '12:00';
-
+  @Input() dateSelected: Date;
+  @Input() rowSeperated: boolean = false;
 
   @Output() date = new EventEmitter<Date>();
-  dateSelected: Date;
+  
 
   emit() {
     this.dateSelected.setHours(+this.time.split(':')[0]);

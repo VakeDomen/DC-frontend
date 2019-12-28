@@ -1,23 +1,23 @@
 <div class="box">
-    <h1 class="title is-1">Registration</h1>
+    <h1 class="title is-1">{{lang.getText("Registration")}}</h1>
     <div class="field">
         <div class="control">
-            <h3 class="title is-3 login-text">Username:</h3>
+            <h3 class="title is-3 login-text">s{{lang.getText("Username")}}:</h3>
             <input class="input is-medium" [(ngModel)]="newUser.name" type="text" placeholder="Medium input">
         </div>
         <div class="control">
-            <h3 class="title is-3 login-text">Email:</h3>
+            <h3 class="title is-3 login-text">{{lang.getText("Email")}}:</h3>
             <input class="input is-medium" [(ngModel)]="newUser.email" type="text" placeholder="Medium input">
         </div>
         <div class="field">
             <div class="control">
-                <h3 class="title is-3 login-text">Password:</h3>
+                <h3 class="title is-3 login-text">{{lang.getText("Password")}}:</h3>
                 <input class="input is-medium" [(ngModel)]="newUser.password" type="password" placeholder="Medium input">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <h3 class="title is-3 login-text">Retype password:</h3>
+                <h3 class="title is-3 login-text">{{lang.getText("Retype password")}}:</h3>
                 <input class="input is-medium" [(ngModel)]="password" type="password" placeholder="Medium input">
             </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="level">
 
         <div class="level-left">
-            <button class="button is-info" (click)="register()">Register</button>
+            <button class="button is-info" (click)="register()">{{lang.getText("Register")}}</button>
         </div>
     </div>
 </div>

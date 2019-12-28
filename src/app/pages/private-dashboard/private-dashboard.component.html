@@ -1,10 +1,11 @@
 <div class="container">
-    <h1 class="title is-2">Your notes</h1>
+    <h1 class="title is-2">{{lang.getText("Your notes")}}</h1>
     <app-filterable-notes 
         [notes]=notes 
         [ableToAddNew]=true 
         [groupColors]=true 
         [groups]=groups
         (createdNote)=newNote($event)
+        [pinned]=true
     ></app-filterable-notes>
 </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthData } from 'src/app/models/auth-data'
 import { User } from 'src/app/models/user';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-confirm',
@@ -18,6 +19,7 @@ export class ConfirmComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private router: Router,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

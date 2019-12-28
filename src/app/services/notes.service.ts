@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from '../models/note';
 import { GroupedNotes } from '../models/grouped-notes';
+import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class NotesService {
     return this.http.get<Note[]>(this.apiUrl, this.httpOptions);
   }
 
+  patchNote(id: string, note: Note): Observable<Note> {
+    return this.http.patch<Note>(this.apiUrl + id, note, this.httpOptions);
+  }
+
   saveNew(note: Note): Observable<Note> {
     return this.http.post<Note>(this.apiUrl, note, this.httpOptions);
   }
@@ -52,12 +57,30 @@ export class NotesService {
   //notes helper functions
 
   sortByDate(notes: Note[]): Note[] {
-    return notes.sort((a: Note, b: Note) => {
-      return this.getTime(new Date(b.date_tag)) - this.getTime(new Date(a.date_tag));
+    let {haveDate, dontHaveDate} = this.splitByDate(notes);
+    haveDate = haveDate.sort((a: Note, b: Note) => {
+      return this.getTime(new Date(a.date_tag)) - this.getTime(new Date(b.date_tag));
     });
+    return haveDate.concat(dontHaveDate);
   }
 
-  private getTime(date?: Date) {
+  private splitByDate(notes: Note[]): {haveDate: Note[], dontHaveDate: Note[]} {
+    let haveDate: Note[] = [];
+    let dontHaveDate: Note[] = [];
+    for (const note of notes) {
+      if (!!note.date_tag) {
+        haveDate.push(note);
+      } else {
+        dontHaveDate.push(note);
+      }
+    }
+    return {
+      haveDate: haveDate,
+      dontHaveDate: dontHaveDate,
+    }
+  }
+
+  private getTime(date?: Date): number {
     return date != null ? date.getTime() : 0;
   }
 }

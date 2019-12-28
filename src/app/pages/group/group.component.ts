@@ -5,6 +5,7 @@ import { GroupsService } from 'src/app/services/groups.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupedNotes } from 'src/app/models/grouped-notes';
 import { AuthService } from 'src/app/services/auth.service';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-group',
@@ -22,6 +23,7 @@ export class GroupComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

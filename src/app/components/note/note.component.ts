@@ -21,4 +21,14 @@ export class NoteComponent implements OnInit {
   shorten(body: string): string {
     return body.slice(0, this.displayBodyLength) + (body.length > this.displayBodyLength ? '...' : '');
   }
+
+  parseDate(date_tag: string): string {
+    let date = new Date(date_tag);
+    if (new Date().getUTCDay() === date.getUTCDay()) {
+      return "Today, " + date.toTimeString().split(" ")[0];
+    } else {
+      return date.toDateString().toString();
+    }
+    
+  }
 }

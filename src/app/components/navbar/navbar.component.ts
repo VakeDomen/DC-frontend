@@ -1,6 +1,7 @@
 import { Component, EventEmitter,  OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

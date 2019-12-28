@@ -8,11 +8,11 @@
                 (colorPickerChange)="colorChange($event)"
             />
         </div>
-        <input class="input level-item" type="text" placeholder="Add name..." [(ngModel)]="group.name">
+        <input class="input level-item" type="text" placeholder="{{lang.getText('Add name...')}}" [(ngModel)]="group.name">
     </div>
     <div class="level">
         <div class="level-item">
-            <button class="button is-primary" (click)="submit()">Confirm</button>
+            <button class="button is-primary" (click)="submit()">{{lang.getText("Confirm")}}</button>
         </div>
     </div>
     

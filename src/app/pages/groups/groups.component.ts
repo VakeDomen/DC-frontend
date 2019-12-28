@@ -4,6 +4,7 @@ import { GroupsService } from 'src/app/services/groups.service';
 import { GroupedNotes } from 'src/app/models/grouped-notes';
 import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-groups',
@@ -19,6 +20,7 @@ export class GroupsComponent implements OnInit {
   constructor(
     private groupService: GroupsService,
     private notesService: NotesService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {

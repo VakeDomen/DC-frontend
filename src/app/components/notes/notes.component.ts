@@ -3,6 +3,7 @@ import { NotesService } from '../../services/notes.service';
 import { Note } from '../../models/note';
 import { AuthService } from '../../services/auth.service';
 import { Group } from 'src/app/models/group';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-notes',
@@ -31,6 +32,7 @@ export class NotesComponent implements OnChanges {
   constructor(
     private noteService: NotesService,
     private auth: AuthService,
+    public lang: LangService,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {

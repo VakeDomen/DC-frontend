@@ -19,40 +19,43 @@
         (click)="activeTab='home'; tab.emit('home')" 
         [routerLink]="['/']" 
         routerLinkActive="router-link-active" >
-        Home
+        {{lang.getText("Home")}}
       </a>
       <a class="navbar-item" 
         [ngClass]="{'is-active': activeTab==='dashboard'}"
         (click)="activeTab='dashboard'; tab.emit('dashboard')"
         [routerLink]="['/dashboard']" 
         routerLinkActive="router-link-active" >
-        Dashboard
+        {{lang.getText("Dashboard")}}
       </a>
       <a class="navbar-item" 
         [ngClass]="{'is-active': activeTab==='groups'}"
         (click)="activeTab='groups'; tab.emit('groups')"
         [routerLink]="['/groups']" 
         routerLinkActive="router-link-active" >
-        Groups
+        {{lang.getText("Groups")}}
       </a>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
+        <app-lang></app-lang>
+      </div>
+      <div class="navbar-item">
         <div *ngIf="!auth.isLoggedIn()" class="buttons">
           <a class="button is-primary" [routerLink]="['/register']">
-            <strong>Sign up</strong>
+            <strong>{{lang.getText("Sign up")}}</strong>
           </a>
           <a class="button is-light" [routerLink]="['/login']">
-            Login
+            {{lang.getText("Login")}}
           </a>
         </div>
         <div *ngIf="auth.isLoggedIn()" class="buttons">
           <a class="button is-primary" [routerLink]="['/profile', auth.loggedUser().id]">
-            <strong>My profile</strong>
+            <strong>{{lang.getText("My profile")}}</strong>
           </a>
           <a class="button is-light" (click)="logout()">
-            Logout
+            {{lang.getText("Logout")}}
           </a>
         </div>
       </div>

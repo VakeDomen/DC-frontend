@@ -2,7 +2,7 @@
     <div class="level">
         <div class="level-left">
             <div>
-                <h1 class="heading">Group:</h1>
+                <h1 class="heading">{{lang.getText("Group")}}:</h1>
                 <h3 class="title is-1">{{ group.name }}</h3>
             </div>
         </div>
@@ -16,7 +16,7 @@
     <div class="box">
         <i class="fas fa-tag fa-2x float-icon"></i>
     
-        <h3 class="title is-3 float-icon"><b>Join tag:</b> </h3><span (click)="copyToClipboard(group.id)" class="tag is-primary is-light is-large bg-light-hover">{{ group.id }}</span>
+        <h3 class="title is-3 float-icon"><b>{{lang.getText('Join tag')}}:</b> </h3><span (click)="copyToClipboard(group.id)" class="tag is-primary is-light is-large bg-light-hover">{{ group.id }}</span>
 
     </div>
     
@@ -29,7 +29,7 @@
                         <i class="fas fa-sticky-note fa-3x icon-center"></i>
                     </div>
                     <div class="column">
-                        <p class="heading">Notes</p>
+                        <p class="heading">{{lang.getText("Notes")}}</p>
                         <p class="title">{{ numOfAllNotes() }}</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <i class="fas fa-thumbtack fa-3x icon-center"></i>
                     </div>
                     <div class="column">
-                        <p class="heading">Pinned</p>
+                        <p class="heading">{{lang.getText("Pinned")}}</p>
                         <p class="title">{{ numOfPinnedNotes() }}</p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             <i class="fas fa-users fa-3x icon-center"></i>
                         </div>
                         <div class="column">
-                            <p class="heading">Members</p>
+                            <p class="heading">{{lang.getText("Members")}}</p>
                             <p class="title">{{ numOfMembers() }}</p>
                         </div>
                     </div>
@@ -64,13 +64,13 @@
         </div>
     </div>
 
-    <h1 class="title is-2">Notes</h1>
+    <h1 class="title is-2">{{lang.getText("Notes")}}</h1>
 
     <app-filterable-notes [group]=group [ableToAddNew]=true [notes]=notes [groupColors]=true (createdNote)="newNote($event)"></app-filterable-notes>
 </div>
 
 <div class="container" *ngIf="!group">
-    <h1 class="title is-1">404 No group found!</h1>
+    <h1 class="title is-1">{{lang.getText("404 group")}}</h1>
 </div>
 
 <!-- leave/delete group modal -->
@@ -79,26 +79,26 @@
     <div class="modal-card" *ngIf="group">
         <div class="content">
             <div class="box" *ngIf="!isGroupOwner()">
-                <p class="has-text-centered">Are you sure you want to leave the group?</p>
+                <p class="has-text-centered">{{lang.getText("leave group text")}}</p>
                 <div class="level">
                     <div class="level-item">
-                        <button class="button is-primary is-outlined" (click)="leaveGroup()">Yes</button>
+                        <button class="button is-primary is-outlined" (click)="leaveGroup()">{{lang.getText("Yes")}}</button>
                     </div>
                     <div class="level-item">
-                        <button class="button is-primary" (click)="leaveModal=!leaveModal">No</button>
+                        <button class="button is-primary" (click)="leaveModal=!leaveModal">{{lang.getText("No")}}</button>
                     </div>
                 </div>
             </div>
 
             <div class="box" *ngIf="isGroupOwner()">
-                <p class="has-text-centered">Are you sure you want to delete the group?</p>
-                <p class="has-text-centered">This action will also delete all the notes belonging to this group.</p>
+                <p class="has-text-centered">{{lang.getText("delete group text")}}</p>
+                <!-- <p class="has-text-centered">This action will also delete all the notes belonging to this group.</p> -->
                 <div class="level">
                     <div class="level-item">
-                        <button class="button is-primary is-outlined" (click)="deleteGroup()">Yes</button>
+                        <button class="button is-primary is-outlined" (click)="deleteGroup()">{{lang.getText("Yes")}}</button>
                     </div>
                     <div class="level-item">
-                        <button class="button is-primary" (click)="leaveModal=!leaveModal">No</button>
+                        <button class="button is-primary" (click)="leaveModal=!leaveModal">{{lang.getText("No")}}</button>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,7 @@
           [(ngModel)]=time
           [ngxTimepicker]="appendedToInput"
         >
+        <br *ngIf="rowSeperated">
         <ngx-material-timepicker
           [format]="24"
           #appendedToInput

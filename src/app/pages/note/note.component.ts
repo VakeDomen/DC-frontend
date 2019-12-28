@@ -5,6 +5,7 @@ import { Note } from 'src/app/models/note';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-note-page',
@@ -15,6 +16,7 @@ export class NotePageComponent implements OnInit {
 
   note: Note;
   user: User;
+  editModal: boolean = false;
 
   constructor(
     private noteService: NotesService,
@@ -22,6 +24,7 @@ export class NotePageComponent implements OnInit {
     private auth: AuthService,
     private userService: UserService,
     private router: Router,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {
@@ -45,6 +48,12 @@ export class NotePageComponent implements OnInit {
     this.noteService.deleteNote(this.note.id).subscribe((note: Note) => {
       this.router.navigate(["/dashboard"])
     })
+  }
+
+  editNote(note: Note): void {
+    console.log("note edited")
+    this.note = note;
+    this.editModal = false;
   }
 
 }

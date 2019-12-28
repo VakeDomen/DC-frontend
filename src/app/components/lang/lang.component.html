@@ -1,0 +1,9 @@
+<div class="container" *ngIf="langs">
+    <div class="select" #selectPage (change)="switchLanguage($event.target.value)" >
+        <select>
+            <option *ngFor="let lang of langs" [value]=lang.code [selected]="lang.code === activeLang">
+                <img class="icon" src="../../../assets/lang/{{lang.icon}}" alt="{{lang.code}}"> {{ lang.code }}
+            </option>
+        </select>
+    </div>
+</div>

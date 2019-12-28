@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
 import { Group } from 'src/app/models/group';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-new-note',
@@ -18,6 +19,7 @@ export class NewNoteComponent implements OnInit {
 
   constructor(
     private noteService: NotesService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,6 @@ export class NewNoteComponent implements OnInit {
       this.note.group_id = this.group.id;
     }
     this.note.preprareForUpload(this.public, this.pinned);
-    console.log(this.note);
     this.noteService.saveNew(this.note).subscribe((note: Note) => {
       this.createdNote.emit(note);
     }, err => {

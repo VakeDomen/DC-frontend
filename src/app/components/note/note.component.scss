@@ -1,8 +1,22 @@
-
 .card {
     height: 100%;
+    position: relative;
 }
+
 .tile {   
     height: 100%;
 }
 
+.pin {
+    position: absolute;
+    z-index: 2;
+    top: 4%;
+    left: 93%;
+}
+
+.date {
+    position: absolute;
+    z-index: 1;
+    top: 85%;
+    left: 5%;
+}

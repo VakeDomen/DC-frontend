@@ -4,7 +4,10 @@
             <h1 class="title is-1"> {{ note.title }}</h1>
         </div>
         <div class="level-right">
-            <div *ngIf="isNoteOwner()" (click)="deleteModal=!deleteModal" class="is-primary teal-hover" >
+            <div *ngIf="isNoteOwner()" (click)="editModal=!editModal" class="is-primary teal-hover mr-3" >
+                <i class="fas fa-edit fa-3x"></i>
+            </div>
+            <div *ngIf="isNoteOwner()" (click)="deleteModal=!deleteModal" class="is-primary teal-hover mr-3" >
                 <i class="fas fa-trash-alt fa-3x"></i>
             </div> 
         </div>
@@ -17,40 +20,52 @@
     <div class="level">
         <div class="level-left">
             <div *ngIf="note.date_tag">
-                Due date: {{note.date_tag | date: 'dd.MM.yyyy hh:mm'}}
+                {{lang.getText("Due date")}}: {{note.date_tag | date: 'dd.MM.yyyy hh:mm'}}
             </div>            
         </div>
         <div class="level-right">
             <div *ngIf="user">
-                Created by: {{ user.name }}
+                {{lang.getText("Created by")}}: {{ user.name }}
             </div>
             <div *ngIf="!user">
-                Created by: Unknown user
+                {{lang.getText("Created by")}}: {{lang.getText("Unknown user")}} 
             </div>
             
         </div>
     </div>
 </div>
 <div class="container" *ngIf="!note">
-    <h1 class="title is-2">Not able to lead note</h1>
-    <h3 class="subtitle is-3">Does it exitst?</h3>
+    <h1 class="title is-2">{{lang.getText("Unable to lead note")}}</h1>
+    <h3 class="subtitle is-3">{{lang.getText("Does note exist")}}</h3>
 </div>
 
-
+<!-- delete modal -->
 <div class="modal" [ngClass]="{'is-active': deleteModal}">
     <div class="modal-background" (click)="deleteModal=!deleteModal"></div>
     <div class="modal-card">
         <div class="content">
             <div class="box" *ngIf="isNoteOwner()">
-                <p class="has-text-centered">Are you sure you want to delete the note?</p>
+                <p class="has-text-centered">{{lang.getText("delte note text")}}</p>
                 <div class="level">
                     <div class="level-item">
-                        <button class="button is-primary is-outlined" (click)="deleteNote()">Yes</button>
+                        <button class="button is-primary is-outlined" (click)="deleteNote()">{{lang.getText("Yes")}}</button>
                     </div>
                     <div class="level-item">
-                        <button class="button is-primary" (click)="deleteModal=!deleteModal">No</button>
+                        <button class="button is-primary" (click)="deleteModal=!deleteModal">{{lang.getText("No")}}</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- edit modal -->
+<div class="modal" [ngClass]="{'is-active': editModal}">
+    <div class="modal-background" (click)="editModal=!editModal"></div>
+    <div class="modal-card">
+        <div class="content">
+            <div class="box" *ngIf="isNoteOwner()">
+                <app-edit-note [note]=note (editedNote)=editNote($event)></app-edit-note>
             </div>
         </div>
     </div>

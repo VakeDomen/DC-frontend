@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Group } from 'src/app/models/group';
 import { GroupsService } from 'src/app/services/groups.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-new-group',
@@ -17,6 +18,7 @@ export class NewGroupComponent implements OnInit {
   constructor(
     private groupService: GroupsService,
     private authService: AuthService,
+    public lang: LangService,
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,6 @@ export class NewGroupComponent implements OnInit {
   submit(): void {
     this.group.preprareForUpload(this.authService.loggedUser(), this.color);
     this.groupService.createGroup(this.group).subscribe((createdGroup: Group) => {
-      console.log("created: ", createdGroup);
       this.createdGroup.emit(createdGroup);
     }, err => {
       console.log("error", err);

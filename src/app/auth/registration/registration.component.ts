@@ -3,6 +3,7 @@ import { NewUser } from 'src/app/models/new-user';
 import { AuthService } from 'src/app/services/auth.service';
 import { Invitation } from 'src/app/models/invitation';
 import { Router } from '@angular/router';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,6 +17,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
+    public lang: LangService,
     private router: Router,
   ) { }
 

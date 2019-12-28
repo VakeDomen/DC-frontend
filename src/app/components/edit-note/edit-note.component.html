@@ -1,14 +1,14 @@
 <ng-container *ngIf="note">
-    <input class="input" type="text" placeholder="{{lang.getText('Add title...')}}" [(ngModel)]="note.title">
+    <input class="input" type="text" placeholder="{{lang.getText('Add title...')}}'" [(ngModel)]="note.title">
     <textarea class="textarea" placeholder="{{lang.getText('Add content...')}}" [(ngModel)]="note.body"></textarea>
     
     <div class="level">
         <div class="level-item has-text-centered">
-            <input id="publicSwitch" type="checkbox" name="publicSwitch" class="switch is-rtl" [(ngModel)]="public">
+            <input id="publicSwitch" type="checkbox" name="publicSwitch" class="switch is-rtl" [(ngModel)]="note.public">
             <label for="publicSwitch">{{lang.getText('Public')}}</label>
         </div>
         <div class="level-item has-text-centered">
-            <input id="pinnedSwitch" type="checkbox" name="pinnedSwitch" class="switch is-rtl" [(ngModel)]="pinned">
+            <input id="pinnedSwitch" type="checkbox" name="pinnedSwitch" class="switch is-rtl" [(ngModel)]="note.pinned">
             <label for="pinnedSwitch">{{lang.getText('Pinned')}}</label>
         </div>
         <div class="level-item has-text-centered">
@@ -17,7 +17,12 @@
         </div>
     </div>
 
-    <app-datepicker *ngIf="due_date" (date)='updateDate($event)' [rowSeperated]=true></app-datepicker>
+    <app-datepicker 
+        *ngIf="due_date"
+        [dateSelected]="note.date_tag"
+        (date)='updateDate($event)'
+    ></app-datepicker>
+
     <div class="level">
         <div class="level-left"></div>
         <div class="level-right">

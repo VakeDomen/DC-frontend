@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="box">
-        <h3 class="title is-4">Filter</h3>
+        <h3 class="title is-4">{{lang.getText("Filter")}}</h3>
         <div class="level">
             <div class="level-item">
                 <input class="input" type="text" placeholder="Search" [(ngModel)]="textFilter">
@@ -12,26 +12,26 @@
             <div class="level-item">
                 <div class="field">
                     <input id="past" type="checkbox" name="past" class="switch" checked="checked" [(ngModel)]="pastFilter">
-                    <label for="past">Past</label>
+                    <label for="past">{{lang.getText("Past")}}</label>
                 </div>
             </div>
             <div class="level-item">
                 <div class="field">
                     <input id="no_date" type="checkbox" name="no_date" class="switch" checked="checked" [(ngModel)]="noDateFilter">
-                    <label for="no_date">No date</label>
+                    <label for="no_date">{{lang.getText("No date")}}</label>
                 </div>
             </div>
             <div class="level-item">
                 <div class="field">
                     <input id="future" type="checkbox" name="future" class="switch" checked="checked" [(ngModel)]="futureFilter">
-                    <label for="future">Future</label>
+                    <label for="future">{{lang.getText("Future")}}</label>
                 </div>
             </div>
         </div>
     </div>
     <app-notes 
         *ngIf="notes" 
-        [pinned]=false 
+        [pinned]=pinned 
         [ableToAddNew]=ableToAddNew 
         [notes]=filter(notes) 
         [groupColors]=groupColors
