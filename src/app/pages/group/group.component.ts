@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GroupedNotes } from 'src/app/models/grouped-notes';
 import { AuthService } from 'src/app/services/auth.service';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-group',
@@ -24,6 +25,7 @@ export class GroupComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,8 @@ export class GroupComponent implements OnInit {
     this.groupService.getGroupWithNotes(id).subscribe((groupedNotes: GroupedNotes) => {
       this.group = groupedNotes.group;
       this.notes = groupedNotes.notes;
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     })
   }
 
@@ -61,20 +65,26 @@ export class GroupComponent implements OnInit {
       e.clipboardData.setData('text/plain', (item));
       e.preventDefault();
       document.removeEventListener('copy', null);
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("tag clipboard"));
     });
     document.execCommand('copy');
   }
 
   leaveGroup(): void {
     this.groupService.leaveGroup(this.group.id).subscribe((group: Group) => {
-      //toast
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("group leave success"));
       this.router.navigate(["/groups"]);
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("group leave error"));
     })
   }
 
   deleteGroup(): void {
     this.groupService.deleteGroup(this.group.id).subscribe((group: Group) => {
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("group delete success"));
       this.router.navigate(["/groups"])
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("group delete error"));
     })
   }
 

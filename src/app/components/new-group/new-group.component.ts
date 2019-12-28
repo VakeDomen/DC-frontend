@@ -3,6 +3,7 @@ import { Group } from 'src/app/models/group';
 import { GroupsService } from 'src/app/services/groups.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-group',
@@ -19,6 +20,7 @@ export class NewGroupComponent implements OnInit {
     private groupService: GroupsService,
     private authService: AuthService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -29,8 +31,9 @@ export class NewGroupComponent implements OnInit {
     this.group.preprareForUpload(this.authService.loggedUser(), this.color);
     this.groupService.createGroup(this.group).subscribe((createdGroup: Group) => {
       this.createdGroup.emit(createdGroup);
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("group created success"));
     }, err => {
-      console.log("error", err);
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("group created error"));
     })
   }
 

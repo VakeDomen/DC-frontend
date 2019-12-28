@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-note',
@@ -18,6 +19,7 @@ export class EditNoteComponent implements OnInit {
   constructor(
     private noteService: NotesService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -28,8 +30,11 @@ export class EditNoteComponent implements OnInit {
     const id = this.note.id;
     this.note = this.prepareForPatch(this.note);
     this.noteService.patchNote(id, this.note).subscribe((note: Note) => {
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("note updated success"));
       this.note = note;
       this.editedNote.emit(note);
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("note updated error"));
     })
   }
 

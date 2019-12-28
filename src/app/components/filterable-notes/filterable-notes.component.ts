@@ -3,6 +3,7 @@ import { Note } from 'src/app/models/note';
 import { Group } from 'src/app/models/group';
 import { PatriciaTree } from 'src/app/models/particiaTree';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-filterable-notes',

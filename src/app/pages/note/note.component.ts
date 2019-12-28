@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-note-page',
@@ -25,6 +26,7 @@ export class NotePageComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,11 @@ export class NotePageComponent implements OnInit {
       this.note = note;
       this.userService.getUser(this.note.user_id).subscribe((user: User) => {
         this.user = user;
+      }, err => {
+        this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
       })
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     });
   }
 
@@ -46,12 +52,14 @@ export class NotePageComponent implements OnInit {
 
   deleteNote(): void {
     this.noteService.deleteNote(this.note.id).subscribe((note: Note) => {
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("note delete success"));
       this.router.navigate(["/dashboard"])
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("note delete error"));
     })
   }
 
   editNote(note: Note): void {
-    console.log("note edited")
     this.note = note;
     this.editModal = false;
   }

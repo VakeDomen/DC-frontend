@@ -5,6 +5,7 @@ import { GroupedNotes } from 'src/app/models/grouped-notes';
 import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-groups',
@@ -21,15 +22,19 @@ export class GroupsComponent implements OnInit {
     private groupService: GroupsService,
     private notesService: NotesService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
     this.groupService.getUserGroups().subscribe((groups: Group[]) => {
       this.groups = groups;
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     })
     this.notesService.getUserGroupNotes().subscribe((groupedNotes: GroupedNotes[]) => {
       this.groupedNotes = groupedNotes;
-      console.log(groupedNotes);
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     });
   }
 
@@ -48,14 +53,12 @@ export class GroupsComponent implements OnInit {
   }
 
   newGroup(group: Group): void {
-    console.log("heeyyyy");
-    console.log(group);
-    //this.groups.push(group);
     this.groupService.joinGroup(group.id).subscribe((group: Group) => {
       this.groups.push(group);
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("group join success"));
       this.modalOpen = false;
     }, err => {
-      console.log("error joining group: ", err)
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("group join error"));
     })
   }
 }

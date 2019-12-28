@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LangService } from 'src/app/services/lang.service';
 import { Language } from 'src/app/models/language';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class LangComponent implements OnInit {
 
   constructor(
     private lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   langs: Language[];
@@ -28,6 +30,7 @@ export class LangComponent implements OnInit {
   switchLanguage(lang: string): void {
     this.lang.setLanguage(lang);
     this.activeLang = lang;
+    this.toast.success(this.lang.getText("Success"), this.lang.getText("lang switch"));
   }
 
 

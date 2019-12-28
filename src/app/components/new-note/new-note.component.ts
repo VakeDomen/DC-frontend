@@ -3,6 +3,7 @@ import { Note } from 'src/app/models/note';
 import { NotesService } from 'src/app/services/notes.service';
 import { Group } from 'src/app/models/group';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-note',
@@ -20,6 +21,7 @@ export class NewNoteComponent implements OnInit {
   constructor(
     private noteService: NotesService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -34,8 +36,9 @@ export class NewNoteComponent implements OnInit {
     this.note.preprareForUpload(this.public, this.pinned);
     this.noteService.saveNew(this.note).subscribe((note: Note) => {
       this.createdNote.emit(note);
+      this.toast.success(this.lang.getText("Success"), this.lang.getText("note new success"));
     }, err => {
-      console.log('error', err);
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("note new error"));
     })
     
 

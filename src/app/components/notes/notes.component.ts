@@ -31,7 +31,6 @@ export class NotesComponent implements OnChanges {
 
   constructor(
     private noteService: NotesService,
-    private auth: AuthService,
     public lang: LangService,
   ) { }
 

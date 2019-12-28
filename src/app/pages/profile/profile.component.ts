@@ -6,6 +6,8 @@ import { GroupedNotes } from 'src/app/models/grouped-notes';
 import { GroupsService } from 'src/app/services/groups.service';
 import { NotesService } from 'src/app/services/notes.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { LangService } from 'src/app/services/lang.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,15 +23,21 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private noteService: NotesService,
+    private toast: ToastrService,
+    private lang: LangService,
   ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.noteService.getUserGroupNotes().subscribe((gnotes: GroupedNotes[]) => {
       this.groupedNotes = gnotes;
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     });
     this.userService.getUser(id).subscribe((user: User) => {
       this.user = user;
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     })
   }
 

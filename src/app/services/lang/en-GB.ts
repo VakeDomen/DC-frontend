@@ -65,4 +65,33 @@ export const translations = {
     "Add name...": "Add name...",
     "Yes": "Yes",
     "No": "No",
+
+    //toastr
+    "Success": "Success",
+    "Error": "Error",
+    "login error": "Error occured while trying to login!",
+    "login success": "Loged in as ",
+    "login invalid credentials": "Invalid login credentials!",
+    "note updated success": "Note successfully updated!",
+    "note updated error": "Error occured while updating note!",
+    "note delete success": "Note has been deleted",
+    "note delete error": "Unable to delete note",
+    "inv sent": "Invitation has been sent",
+    "group join success": "Joined group",
+    "group join error": "Unable to join group",
+    "lang switch": "Changed language",
+    "group created success": "Group created",
+    "group created error": "Unable to create group",
+    "group leave success": "Left group",
+    "group leave error": "Unable to leave group",
+    "group delete success": "Group delted",
+    "group delte error": "Unable to delete group",
+    "tag clipboard": "Group tag copied to clipboard",
+    "note new success": "Created a new note",
+    "note new error": "Unable to create a note",
+
+    //errors
+    "401": "Unauthorized to access/modify the resource",
+    "404": "Resource not found",
+    "500": "Internal server error",
 }

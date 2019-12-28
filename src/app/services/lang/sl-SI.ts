@@ -10,8 +10,8 @@ export const translations = {
     "Next": "Naprej",
     "Previous": "Nazaj",
     
-    "Your notes": "Vaši listki",
-    "No notes": "Ni listkov",
+    "Your notes": "Vaši zaznamki",
+    "No notes": "Ni zaznamkov",
 
     //auth
     "Confirm registration": "Potrdi registracijo",
@@ -37,12 +37,12 @@ export const translations = {
     "Confirm": "Potrdi",
     "Cancel": "Prekliči",
     "Notes": "Listki",
-    "Pinned notes": "Pripeti listki",
+    "Pinned notes": "Pripeti zaznamki",
     "Created by": "Ustvaril",
     "Unknown user": "Neznan uporabnik",
-    "Unable to load note": "Listka ni mogoče naložiti",
+    "Unable to load note": "Zaznamka ni mogoče naložiti",
     "Does note exits": "Ali obstaja?",
-    "delete note text": "Ali ste prepičani, da želite izbrisati listek?",
+    "delete note text": "Ali ste prepičani, da želite izbrisati zaznamek?",
 
     //groups
     "Specify group tag...": "Vpišite oznako skupine...",
@@ -53,7 +53,7 @@ export const translations = {
     "404 group": "404 Nobena skupina najdena!",
     "leave group text": "Ali ste prepičani, da želite zapustiti skupino?",
     "delete group text": "Ali ste prepičani, da želite izbrisati skupino?",
-    "No group": "Trenutno niste učlanjeni v nobeno skupino.",
+    "No group": "Trenutno niste včlanjeni v nobeno skupino.",
     "Join": "Pridruži se",
     "Create new": "Nova skupina",
 
@@ -64,4 +64,33 @@ export const translations = {
     "Add name...": "Dodaj ime...",
     "Yes": "Da",
     "No": "Ne",
+
+    //toastr
+    "Success": "Uspešno",
+    "Error": "Napaka",
+    "login error": "Prijava ni bila uspešna!",
+    "login success": "Prijavljen kot ",
+    "login invalid credentials": "Neveljavni identifikacijski podatki",
+    "note updated success": "Zaznamek uspešno posodobljen!",
+    "note updated error": "Napaka pri posodabljanju zaznamka!",
+    "note delete success": "Zaznamek izbrisan",
+    "note delete error": "Napak pri brisanju zazamka",
+    "inv sent": "Povabilo poslano",
+    "group join success": "Uspešna priključitev k skupini",
+    "group join error": "Priključitev k skupini neuspešna",
+    "lang switch": "Jezik spremenjen",
+    "group created success": "Skupina ustvarjena",
+    "group created error": "Napaka pri ustvarjanju skupine",
+    "group leave success": "Skupina zapuščena",
+    "group leave error": "Ni bilo mogoče zapustiti skupine",
+    "group delete success": "Skupina izbrisana",
+    "group delete error": "Skupine ni bilo mogoče izbrisati",
+    "tag clipboard": "Oznaka skupine kopirana",
+    "note new success": "Nov zaznamek ustvarjen",
+    "note new error": "Zaznamek ni bil ustvarjen",
+
+    //errors
+    "401": "Dostop ni odobren",
+    "404": "Ni mogoče najti vir",
+    "500": "Napaka pri komunikaciji s strežnikom",
 }

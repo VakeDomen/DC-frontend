@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Invitation } from 'src/app/models/invitation';
 import { Router } from '@angular/router';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -19,6 +20,7 @@ export class RegistrationComponent implements OnInit {
     private auth: AuthService,
     public lang: LangService,
     private router: Router,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -29,13 +31,13 @@ export class RegistrationComponent implements OnInit {
   register() {
     if (this.newUser.checkData(this.password)) {
       this.auth.register(this.newUser).subscribe((inv: Invitation) => {
-        console.log(inv);
+        this.toast.success(this.lang.getText("Success"), this.lang.getText("inv sent"));
         this.router.navigate(["/login"])
       }, err => {
-        console.log(err);
+        this.toast.error(this.lang.getText("Error"), err);
       })
     } else {
-      console.log("invalid registration data");
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("login invalid credentials"));
     }
   }
 

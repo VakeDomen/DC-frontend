@@ -4,6 +4,7 @@ import { Note } from 'src/app/models/note';
 import { GroupsService } from 'src/app/services/groups.service';
 import { Group } from 'src/app/models/group';
 import { LangService } from 'src/app/services/lang.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-private-dashboard',
@@ -19,16 +20,19 @@ export class PrivateDashboardComponent implements OnInit {
     private noteService: NotesService,
     private groupsService: GroupsService,
     public lang: LangService,
+    private toast: ToastrService,
   ) { }
 
   ngOnInit() {
     this.groupsService.getUserGroups().subscribe((groups: Group[]) => {
       this.groups = groups;
+    }, err => {
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     })
     this.noteService.getUserNotes().subscribe((notes: Note[]) => {
       this.notes = notes;
     }, error => {
-      console.log(error);
+      this.toast.error(this.lang.getText("Error"), this.lang.getText("500"));
     })
   }
 

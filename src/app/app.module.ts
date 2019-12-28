@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+ 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +45,7 @@ import { FilterableNotesComponent } from './components/filterable-notes/filterab
 import { NotePageComponent } from './pages/note/note.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { LangComponent } from './components/lang/lang.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -87,6 +90,9 @@ import { LangComponent } from './components/lang/lang.component';
     MatNativeDateModule,
     NgxMaterialTimepickerModule.setLocale('de'),
 
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
     ColorPickerModule
   ],
   exports: [
