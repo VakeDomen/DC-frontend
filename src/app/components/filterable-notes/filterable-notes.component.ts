@@ -73,7 +73,6 @@ export class FilterableNotesComponent implements OnChanges {
 
 
   newNote(note: Note): void {
-    console.log("new note: ", note);
     this.createdNote.emit(note);
   }
 }

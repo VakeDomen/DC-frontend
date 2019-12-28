@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/services/notes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Note } from 'src/app/models/note';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,6 +21,7 @@ export class NotePageComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -34,10 +35,16 @@ export class NotePageComponent implements OnInit {
   }
 
   isNoteOwner(): boolean {
-    if (!this.auth.loggedUser()) {
+    if (!this.auth.loggedUser() || !this.note) {
       return false;
     }
     return this.auth.loggedUser().id === this.note.user_id;
+  }
+
+  deleteNote(): void {
+    this.noteService.deleteNote(this.note.id).subscribe((note: Note) => {
+      this.router.navigate(["/dashboard"])
+    })
   }
 
 }

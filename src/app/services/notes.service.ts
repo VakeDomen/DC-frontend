@@ -34,7 +34,6 @@ export class NotesService {
   }
 
   getPublicNotes(): Observable<Note[]> {
-    // not implemented yet
     return this.http.get<Note[]>(this.apiUrl + "public", this.httpOptions);
   }
 
@@ -44,6 +43,10 @@ export class NotesService {
 
   saveNew(note: Note): Observable<Note> {
     return this.http.post<Note>(this.apiUrl, note, this.httpOptions);
+  }
+
+  deleteNote(id: string): Observable<Note> {
+    return this.http.delete<Note>(this.apiUrl + id, this.httpOptions);
   }
 
   //notes helper functions

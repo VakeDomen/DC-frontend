@@ -130,7 +130,6 @@ export class NotesComponent implements OnChanges {
     return this.finalPage;
   }
   setPage(page: number): void {
-    console.log(page)
     if (page > 0 && page < this.finalPage + 1) {
       this.page = page;
     }
@@ -140,7 +139,6 @@ export class NotesComponent implements OnChanges {
     for(let i = 0 ; i < this.getLastPage() ; i++) {
       out.push(i + 1);
     }
-    console.log(out);
     return out;
   }
 }

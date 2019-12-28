@@ -4,7 +4,7 @@
             <h1 class="title is-1"> {{ note.title }}</h1>
         </div>
         <div class="level-right">
-            <div *ngIf="isNoteOwner()" (click)="leaveModal=!leaveModal" class="is-primary teal-hover" >
+            <div *ngIf="isNoteOwner()" (click)="deleteModal=!deleteModal" class="is-primary teal-hover" >
                 <i class="fas fa-trash-alt fa-3x"></i>
             </div> 
         </div>
@@ -34,4 +34,24 @@
 <div class="container" *ngIf="!note">
     <h1 class="title is-2">Not able to lead note</h1>
     <h3 class="subtitle is-3">Does it exitst?</h3>
+</div>
+
+
+<div class="modal" [ngClass]="{'is-active': deleteModal}">
+    <div class="modal-background" (click)="deleteModal=!deleteModal"></div>
+    <div class="modal-card">
+        <div class="content">
+            <div class="box" *ngIf="isNoteOwner()">
+                <p class="has-text-centered">Are you sure you want to delete the note?</p>
+                <div class="level">
+                    <div class="level-item">
+                        <button class="button is-primary is-outlined" (click)="deleteNote()">Yes</button>
+                    </div>
+                    <div class="level-item">
+                        <button class="button is-primary" (click)="deleteModal=!deleteModal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
