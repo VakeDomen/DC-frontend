@@ -3,18 +3,18 @@
         <div class="field">
             <div class="control">
                 <h3 class="title is-3 login-text">{{lang.getText("Email")}}:</h3>
-                <input class="input is-medium" [(ngModel)]="authData.email" type="text" placeholder="Medium input">
+                <input class="input is-medium" [(ngModel)]="authData.email" type="text" placeholder="{{lang.getText('Email')}}">
             </div>
             <div class="field">
                 <div class="control">
                     <h3 class="title is-3 login-text">{{lang.getText("Password")}}:</h3>
-                    <input class="input is-medium" [(ngModel)]="authData.password" type="password" placeholder="Medium input">
+                    <input class="input is-medium" [(ngModel)]="authData.password" type="password" placeholder="{{lang.getText('Password')}}">
                 </div>
             </div>
         </div>
         <div class="level">
             <div class="level-left">
-                <button class="button is-success" (click)="login()">{{lang.getText("Confirm and login")}}</button>
+                <button class="button is-primary" (click)="login()">{{lang.getText("Confirm and login")}}</button>
             </div>
         </div>
     </div>

@@ -15,6 +15,7 @@ export const translations = {
 
     //auth
     "Confirm registration": "Potrdi registracijo",
+    "Username": "Uporabniško ime",
     "Email": "Email",
     "Password": "Geslo",
     "Confirm and login": "Potrdi in se vpiši",

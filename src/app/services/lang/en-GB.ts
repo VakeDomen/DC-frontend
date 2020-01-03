@@ -16,6 +16,7 @@ export const translations = {
 
     //auth
     "Confirm registration": "Confirm registration",
+    "Username": "Username",
     "Email": "Email",
     "Password": "Password",
     "Confirm and login": "Confirm and login",

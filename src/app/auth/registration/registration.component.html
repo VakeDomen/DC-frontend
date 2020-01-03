@@ -2,7 +2,7 @@
     <h1 class="title is-1">{{lang.getText("Registration")}}</h1>
     <div class="field">
         <div class="control">
-            <h3 class="title is-3 login-text">s{{lang.getText("Username")}}:</h3>
+            <h3 class="title is-3 login-text">{{lang.getText("Username")}}:</h3>
             <input class="input is-medium" [(ngModel)]="newUser.name" type="text" placeholder="Medium input">
         </div>
         <div class="control">
@@ -25,7 +25,7 @@
     <div class="level">
 
         <div class="level-left">
-            <button class="button is-info" (click)="register()">{{lang.getText("Register")}}</button>
+            <button class="button is-primary" (click)="register()">{{lang.getText("Register")}}</button>
         </div>
     </div>
 </div>
