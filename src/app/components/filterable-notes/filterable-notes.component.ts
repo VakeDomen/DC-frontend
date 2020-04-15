@@ -39,7 +39,9 @@ export class FilterableNotesComponent implements OnChanges {
       for (const note of this.notes) {
         this.noteFilterTree.insertWord(note.title, note);
       }
+      console.log(this.noteFilterTree);
     }
+    
   }
 
   filter(notes: Note[]): Note[] {

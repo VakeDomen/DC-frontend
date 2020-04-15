@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.authData).subscribe((user: User) => {
         this.auth.setUser(user);
         this.router.navigate(["/"]);
-        this.toast.success(this.lang.getText("Error"), this.lang.getText("login success" + user.name));
+        this.toast.success(this.lang.getText("Success"), this.lang.getText("login success") + user.name);
       }, err => {
         this.toast.error(this.lang.getText("Error"), this.lang.getText("login error"));
       });
