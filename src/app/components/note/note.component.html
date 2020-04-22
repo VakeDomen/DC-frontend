@@ -2,7 +2,7 @@
     <i *ngIf="note.pinned" class="fas fa-thumbtack pin" ></i>
     <article class="tile is-child notification" [style.background]="color">
         <p class="title">{{ note.title }}</p>
-        <p>
+        <p class='note-body'>
             {{ shorten(note.body) }}
         </p>
         <p class="date" *ngIf="!!note.date_tag">{{ parseDate(note.date_tag) }}</p>
